@@ -1,0 +1,114 @@
+definitions:
+  message.SendMessageDto:
+    properties:
+      Text:
+        type: string
+      UserId:
+        type: string
+    required:
+    - Text
+    - UserId
+    type: object
+info:
+  contact: {}
+paths:
+  /line/message:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/message.SendMessageDto'
+      responses: {}
+      summary: 發送訊息給使用者
+  /line/message/{index}/{pageSize}:
+    get:
+      parameters:
+      - default: 1
+        description: 第幾頁
+        in: path
+        name: index
+        required: true
+        type: integer
+      - default: 10
+        description: 單頁顯示數量
+        in: path
+        name: pageSize
+        required: true
+        type: integer
+      - description: 使用者代碼
+        in: path
+        name: userId
+        type: string
+      responses: {}
+      summary: 取得訊息列表
+  /line/message/{index}/{pageSize}/{userId}:
+    get:
+      parameters:
+      - default: 1
+        description: 第幾頁
+        in: path
+        name: index
+        required: true
+        type: integer
+      - default: 10
+        description: 單頁顯示數量
+        in: path
+        name: pageSize
+        required: true
+        type: integer
+      - description: 使用者代碼
+        in: path
+        name: userId
+        type: string
+      responses: {}
+      summary: 取得訊息列表
+  /line/user/{index}/{pageSize}:
+    get:
+      parameters:
+      - default: 1
+        description: 第幾頁
+        in: path
+        name: index
+        required: true
+        type: integer
+      - default: 10
+        description: 單頁顯示數量
+        in: path
+        name: pageSize
+        required: true
+        type: integer
+      - default: ""
+        description: 使用者名稱(關鍵字)
+        in: path
+        name: name
+        type: string
+      responses: {}
+      summary: 取得使用者列表
+  /line/user/{index}/{pageSize}/{name}:
+    get:
+      parameters:
+      - default: 1
+        description: 第幾頁
+        in: path
+        name: index
+        required: true
+        type: integer
+      - default: 10
+        description: 單頁顯示數量
+        in: path
+        name: pageSize
+        required: true
+        type: integer
+      - default: ""
+        description: 使用者名稱(關鍵字)
+        in: path
+        name: name
+        type: string
+      responses: {}
+      summary: 取得使用者列表
+swagger: "2.0"
